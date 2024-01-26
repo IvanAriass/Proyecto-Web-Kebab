@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp8IZri7lNVbmMGt1tRY0XX46IyFFbCCzAQTj7xbgggzY537D61mvSbPmDMS3VNWz-aBM&usqp=CAU">
+    <link rel="stylesheet" href="/css/estilos.css">
+   	<link rel="stylesheet" href="/css/w3.css">
+   	<style>
+		body, html {height: 100%}
+		body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+		.menu {display: none}
+		.bgimg {
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		  background-image: url("https://images8.alphacoders.com/745/thumb-1920-745042.jpg");
+		  min-height: 95%;
+		}
+	   </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  
+</head>
+<body>
+
+    <main>
+
+        <div class="contenedor__todo">
+        <!--Caja Trasera global-->
+            <div class="caja__trasera">
+			<!--Caja Trasera(registro)-->
+                <div class="caja__trasera-login">
+                    <h3>¿Ya tienes una cuenta?</h3>
+                    <p>Inicia sesión para entrar en la página</p>
+                    <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+                </div>
+			<!--Caja Trasera(registro)-->
+                <div class="caja__trasera-register">
+                    <h3>¿Aún no tienes cuenta?</h3>
+                    <p>Regístrate para iniciar sesión</p>
+                    <button id="btn__registrarse">Regístrate</button>
+                </div>
+            </div>
+            <!--Formulario de login y registro-->
+            <div class="contenedor__login-register">
+                <!--Login-->
+                <form th:action="@{/login-post}" class="formulario__login" method="POST">
+                    <h2>Iniciar Sesión</h2>
+                    <input type="text" id="email" placeholder="Email" name="username" required>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <button type="submit" name="login">Entrar</button>
+                </form>
+                <!--Registro-->
+                <form th:object="${usuariosForm}" th:action="@{/registro}" action="#" class="formulario__register" method="POST">
+                    <h2>Regístrarse</h2>
+                    <div class="row gx-3">
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Nombre" id="name" name="name" th:field="*{nombre}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Apellidos" id="surname" name="surname" th:field="*{apellidos}" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Correo Electronico" id="email" name="email" th:field="*{email}" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="password" placeholder="Contraseña" id="password" name="password" th:field="*{contraseña}" required>
+                        </div>
+                        <div class="col-md-12">
+                            <select name="rol" th:field="*{rol}" required>
+                                <option value="Admin" selected>Admin</option>
+                                <option value="Usuario">Usuario</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" placeholder="DNI" id="dni" name="dni" minlength="9" maxlength="9" th:field="*{dni}" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Dirección" id="direccion" name="adress" th:field="*{direccion}" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Teléfono" id="phone" name="phone" minlength="9" maxlength="9" th:field="*{telefono}" required>
+					<span id="ValidarFormlulario"></span>
+                        </div>     
+                    </div>                   
+                    <button type="submit" name="registrarse">Registrarse</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Errores-->
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+              <header class="w3-container w3-red"> 
+                <span onclick="document.getElementById('id01').style.display='none'" 
+                class="w3-button w3-display-topright">&times;</span>
+                <h1>ERROR</h1>
+              </header>
+                <div class="w3-container">
+                    <h2 class="w3-black"></h2>
+                </div> 
+            </div>
+          </div>
+        <script>
+            document.getElement.ById('01').style.display="block";
+        </script>
+        
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html> 
